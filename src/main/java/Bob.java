@@ -1,13 +1,21 @@
+import java.util.Scanner;
+import java.io.*;
+
 public class Bob {
     public static void main(String[] args) {
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-        String line = "____________________________________________________________\n";
-        String hello = "Hello! I'm Bob\nWhat can I do for you?\n";
-        String bye = "Bye. Hope to see you again soon!\n";
-        System.out.println(line + hello + line + bye + line);
+        String line = "\t____________________________________________________________\n";
+        String hello = line + "\tHello! I'm Bob\n\tWhat can I do for you?\n" + line;
+        String bye = line + "\tBye. Hope to see you again soon!\n" + line;
+        System.out.println(hello);
+
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        while (!input.equalsIgnoreCase("bye")) {
+            String output = String.format(line + "\t" + input + "\n" +  line);
+            System.out.println(output);
+            input = sc.nextLine();
+        }
+        System.out.println(bye);
+
     }
 }

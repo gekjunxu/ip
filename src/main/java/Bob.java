@@ -14,7 +14,7 @@ public class Bob {
 
         // Read in user input for first time
         String rawInput = sc.nextLine();
-        String[] input = rawInput.split(" ",2);
+        String[] input = rawInput.split(" ", 2);
 
         // Store list of to do
         ArrayList<Task> list = new ArrayList<>();
@@ -57,7 +57,25 @@ public class Bob {
                 System.out.println("\t   " + list.get(list.size() - 1).toString());
                 System.out.println("\t Now you have " + list.size() + " tasks in the list.\n" + line);
 
-            } else {
+            } else if (input[0].equalsIgnoreCase("event")) {
+                String[] eventSplit = input[1].split("/from ");
+                String description = eventSplit[0];
+                String[] durationSplit = eventSplit[1].split("/to");
+                String from = durationSplit[0];
+                String to = durationSplit[1];
+                list.add(new Event(description, from, to));
+                System.out.println(line + "\t Got it. I've added this task:");
+                System.out.println("\t   " + list.get(list.size() - 1).toString());
+                System.out.println("\t Now you have " + list.size() + " tasks in the list.\n" + line);
+
+            } else if (input[0].equalsIgnoreCase("todo")) {
+                list.add(new Todo(input[1]));
+                System.out.println(line + "\t Got it. I've added this task:");
+                System.out.println("\t   " + list.get(list.size() - 1).toString());
+                System.out.println("\t Now you have " + list.size() + " tasks in the list.\n" + line);
+
+            }
+            else {
                 // Add item to list
                 list.add(new Task(rawInput));
                 System.out.println(line + "\tadded: " + rawInput + "\n" + line);
@@ -65,7 +83,7 @@ public class Bob {
 
             // Continue to read next user input
             rawInput = sc.nextLine();
-            input = rawInput.split(" ",2);
+            input = rawInput.split(" ", 2);
         }
         // Close the bot when user types bye
         System.out.println(bye);

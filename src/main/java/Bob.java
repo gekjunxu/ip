@@ -16,22 +16,39 @@ public class Bob {
         String input = sc.nextLine();
 
         // Store list of to do
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<Task> list = new ArrayList<>();
 
         while (!input.equalsIgnoreCase("bye")) {
             if (input.equalsIgnoreCase("list")) {
                 // List out the list
-               if (list.isEmpty()) {
-                   System.out.println("There are no items in the list");
-               } else {
-                   for (int i = 0; i < list.size(); i++) {
-                       System.out.println("\t" + (i+1) + ". " + list.get(i));
-                   }
-               }
+                if (list.isEmpty()) {
+                    System.out.println("There are no items in the list");
+                } else {
+                    System.out.print(line);
+                    System.out.println("\tHere are the tasks in your list:");
+                    for (int i = 0; i < list.size(); i++) {
+                        System.out.println("\t" + (i + 1) + ". " + list.get(i).toString());
+                    }
+                    System.out.println(line);
+                }
+
+            } else if (input.contains("unmark")) {
+                // unmark item
+                String[] stringArray = input.split(" ");
+                int index = Integer.parseInt(stringArray[1]) - 1;
+                list.get(index).unMarkDone();
+                System.out.println(line + "\t   " + list.get(index).toString() + "\n" + line);
+
+            } else if (input.contains("mark")) {
+                // Mark item
+                String[] stringArray = input.split(" ");
+                int index = Integer.parseInt(stringArray[1]) - 1;
+                list.get(index).markDone();
+                System.out.println(line + "\t   " + list.get(index).toString() + "\n" + line);
 
             } else {
                 // Add item to list
-                list.add(input);
+                list.add(new Task(input));
                 System.out.println(line + "\tadded: " + input + "\n" + line);
             }
 

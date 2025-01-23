@@ -13,13 +13,14 @@ public class Bob {
         Scanner sc = new Scanner(System.in);
 
         // Read in user input for first time
-        String input = sc.nextLine();
+        String rawInput = sc.nextLine();
+        String[] input = rawInput.split(" ",2);
 
         // Store list of to do
         ArrayList<Task> list = new ArrayList<>();
 
-        while (!input.equalsIgnoreCase("bye")) {
-            if (input.equalsIgnoreCase("list")) {
+        while (!input[0].equalsIgnoreCase("bye")) {
+            if (input[0].equalsIgnoreCase("list")) {
                 // List out the list
                 if (list.isEmpty()) {
                     System.out.println("There are no items in the list");
@@ -32,28 +33,39 @@ public class Bob {
                     System.out.println(line);
                 }
 
-            } else if (input.contains("unmark")) {
+            } else if (input[0].contains("unmark")) {
                 // unmark item
-                String[] stringArray = input.split(" ");
-                int index = Integer.parseInt(stringArray[1]) - 1;
+                //String[] stringArray = input.split(" ");
+                int index = Integer.parseInt(input[1]) - 1;
                 list.get(index).unMarkDone();
                 System.out.println(line + "\t   " + list.get(index).toString() + "\n" + line);
 
-            } else if (input.contains("mark")) {
+            } else if (input[0].contains("mark")) {
                 // Mark item
-                String[] stringArray = input.split(" ");
-                int index = Integer.parseInt(stringArray[1]) - 1;
+                //String[] stringArray = input.split(" ");
+                int index = Integer.parseInt(input[1]) - 1;
                 list.get(index).markDone();
                 System.out.println(line + "\t   " + list.get(index).toString() + "\n" + line);
 
+            } else if (input[0].equalsIgnoreCase("deadline")) {
+                // Index 0 is before /by, index 1 is after /by
+                String[] deadLineSplit = input[1].split("/by ");
+                String description = deadLineSplit[0];
+                String deadLine = deadLineSplit[1];
+                list.add(new Deadline(description, deadLine));
+                System.out.println(line + "\t Got it. I've added this task:");
+                System.out.println("\t   " + list.get(list.size() - 1).toString());
+                System.out.println("\t Now you have " + list.size() + " tasks in the list.\n" + line);
+
             } else {
                 // Add item to list
-                list.add(new Task(input));
-                System.out.println(line + "\tadded: " + input + "\n" + line);
+                list.add(new Task(rawInput));
+                System.out.println(line + "\tadded: " + rawInput + "\n" + line);
             }
 
             // Continue to read next user input
-            input = sc.nextLine();
+            rawInput = sc.nextLine();
+            input = rawInput.split(" ",2);
         }
         // Close the bot when user types bye
         System.out.println(bye);

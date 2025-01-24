@@ -40,8 +40,8 @@ public class Bob {
 
                         if (input.length < 2) {
                             throw new BobException("Your command is missing a number to unmark");
-                        } else if (input[1].isEmpty()) {
-                            throw new BobException("Your command is missing a number to mark");
+                        } else if (input[1].isEmpty() || !input[1].matches("-?\\d+")) {
+                            throw new BobException("Your command is missing a number to unmark");
                         }
                         int index = Integer.parseInt(input[1]) - 1;
                         if (index < 0 || index >= list.size()) {
@@ -56,7 +56,7 @@ public class Bob {
                         // Throw exception if no number given
                         if (input.length < 2) {
                             throw new BobException("Your command is missing a number to mark");
-                        } else if (input[1].isEmpty()) {
+                        } else if (input[1].isEmpty() || !input[1].matches("-?\\d+")) {
                             throw new BobException("Your command is missing a number to mark");
                         }
                         int index = Integer.parseInt(input[1]) - 1;

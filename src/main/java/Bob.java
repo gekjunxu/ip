@@ -103,11 +103,29 @@ public class Bob {
                         System.out.println("\t   " + list.get(list.size() - 1).toString());
                         System.out.println("\t Now you have " + list.size() + " tasks in the list.\n" + line);
 
+                    } else if (input[0].equalsIgnoreCase("delete")) {
+                        // Handle case where incorrect number of arguments given
+                        if (input.length != 2) {
+                            throw new BobException("Incorrect number of arguments");
+                        }
+                        int index = Integer.parseInt(input[1]) - 1;
+
+                        // Handle case when task number not found
+                        if (index < 0 || index >= list.size()) {
+                            throw new BobException("No such task number");
+                        }
+
+                        System.out.println(line + "\t Noted. I've deleted this task:");
+                        System.out.println("\t   " + list.get(index).toString());
+                        list.remove(index);
+                        System.out.println("\t Now you have " + list.size() + " tasks in the list.\n" + line);
+
                     } else {
                         // Invalid input, throw exception
                         throw new BobException("Bob doesn't recognise this, please try again\n" +
                                 "\tUsage: \n\t1. todo <description> or \n\t2. deadline <description> /by <deadline> or\n\t3. event <description> " +
-                                "/from <start time> /to <end time>\n\t4. list\n\t5. mark <task number>\n\t6. unmark <task number>");
+                                "/from <start time> /to <end time>\n\t4. list\n\t5. mark <task number>\n\t6. unmark <task number>" +
+                                "\n\t7. delete <task number>");
 
                     }
 

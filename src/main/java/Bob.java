@@ -9,6 +9,9 @@ public class Bob {
         String bye = line + "\tBye. Hope to see you again soon!\n" + line;
         System.out.println(hello);
 
+        // Store list of to do
+        ArrayList<Task> list = new ArrayList<>();
+
         while (true) {
             try {
                 // Initialise scanner
@@ -17,9 +20,6 @@ public class Bob {
                 // Read in user input for first time
                 String rawInput = sc.nextLine();
                 String[] input = rawInput.split(" ", 2);
-
-                // Store list of to do
-                ArrayList<Task> list = new ArrayList<>();
 
                 while (!input[0].equalsIgnoreCase("bye")) {
                     if (input[0].equalsIgnoreCase("list")) {

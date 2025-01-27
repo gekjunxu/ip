@@ -1,9 +1,27 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.*;
+import java.nio.file.Path;
+
+
+
 
 public class Bob {
-    public static void main(String[] args) throws BobException {
+
+    public static void main(String[] args) throws BobException, IOException {
+
+        // Check data file present or not, creates one if not present
+        Path directory = Paths.get("data");
+        Path filename = Paths.get("data/bob.txt");
+        boolean directoryExists = Files.exists(filename);
+        if (!directoryExists) {
+            Files.createDirectories(directory);
+            Files.createFile(filename);
+            System.out.println("\tData file was not found, created one successfully!");
+        }
+
         String line = "\t____________________________________________________________\n";
         String hello = line + "\tHello! I'm Bob\n\tWhat can I do for you?\n" + line;
         String bye = line + "\tBye. Hope to see you again soon!\n" + line;

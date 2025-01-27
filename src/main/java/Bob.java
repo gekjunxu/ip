@@ -108,7 +108,7 @@ public class Bob {
                     } else if (input[0].equalsIgnoreCase("delete")) {
                         // Handle case where incorrect number of arguments given
                         if (input.length != 2) {
-                            throw new BobException("Incorect number of arguments");
+                            throw new BobException("Incorrect number of arguments");
                         }
                         int index = Integer.parseInt(input[1]) - 1;
 

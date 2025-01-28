@@ -142,10 +142,18 @@ public class Bob {
 
                     } else {
                         // Invalid input, throw exception
-                        throw new BobException("Bob doesn't recognise this, please try again\n" +
-                                "\tUsage: \n\t1. todo <description> or \n\t2. deadline <description> /by <deadline> or\n\t3. event <description> " +
-                                "/from <start time> /to <end time>\n\t4. list\n\t5. mark <task number>\n\t6. unmark <task number>" +
-                                "\n\t7. delete <task number>");
+                        throw new BobException("""
+                                Bob doesn't recognise this, please try again
+                                \tUsage:\s
+                                \t1. todo <description> or\s
+                                \t2. deadline <description> /by <deadline> or
+                                \t3. event <description> \
+                                /from <start time> /to <end time>
+                                \t4. list
+                                \t5. mark <task number>
+                                \t6. unmark <task number>\
+                                
+                                \t7. delete <task number>""");
 
                     }
 

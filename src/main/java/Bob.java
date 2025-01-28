@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,11 +17,11 @@ public class Bob {
 
         // Check data file present or not, creates one if not present
         Path directory = Paths.get("data");
-        Path filename = Paths.get("data/bob.txt");
-        boolean directoryExists = Files.exists(filename);
+        Path filePath = Paths.get("data/bob.txt");
+        boolean directoryExists = Files.exists(filePath);
         if (!directoryExists) {
             Files.createDirectories(directory);
-            Files.createFile(filename);
+            Files.createFile(filePath);
             System.out.println("\tData file was not found, created one successfully!");
         }
 
@@ -162,7 +165,20 @@ public class Bob {
                     input = rawInput.split(" ", 2);
                 }
                 // Close the bot when user types bye
+                // Say bye message when user types bye
                 System.out.println(bye);
+
+                // Write lists to file before exit
+                File file = filePath.toFile();
+                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+                for (int i = 0; i < list.size(); i++) {
+                    writer.write(list.get(i).toString());
+                    writer.newLine();
+                }
+                writer.close();
+
+
+                // Break out of loop to exit
                 break;
 
             } catch (BobException e) {

@@ -108,7 +108,7 @@ public class Bob {
 
                         String[] eventSplit = input[1].split("/from ");
                         String description = eventSplit[0];
-                        String[] durationSplit = eventSplit[1].split("/to");
+                        String[] durationSplit = eventSplit[1].split("/to ");
                         String from = durationSplit[0];
                         String to = durationSplit[1];
                         list.add(new Event(description, from, to));

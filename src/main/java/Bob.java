@@ -1,16 +1,40 @@
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.*;
+import java.nio.file.Path;
 
 public class Bob {
-    public static void main(String[] args) throws BobException {
+
+    public static void main(String[] args) throws BobException, IOException {
+
+        // Store list of to do
+        ArrayList<Task> list = new ArrayList<>();
+
+        // Check data file present or not, creates one if not present
+        Path directory = Paths.get("data");
+        Path filePath = Paths.get("data/bob.txt");
+        boolean directoryExists = Files.exists(filePath);
+        if (!directoryExists) {
+            Files.createDirectories(directory);
+            Files.createFile(filePath);
+            System.out.println("\tData file was not found, created one successfully!");
+        } else {
+            // If file already exists, import into list
+            BufferedReader reader = new BufferedReader(new FileReader(filePath.toFile()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Task task = parseTask(line); // Parse each line into a Task
+                list.add(task);
+            }
+
+        }
+
         String line = "\t____________________________________________________________\n";
         String hello = line + "\tHello! I'm Bob\n\tWhat can I do for you?\n" + line;
         String bye = line + "\tBye. Hope to see you again soon!\n" + line;
         System.out.println(hello);
-
-        // Store list of to do
-        ArrayList<Task> list = new ArrayList<>();
 
         while (true) {
             try {
@@ -87,7 +111,7 @@ public class Bob {
 
                         String[] eventSplit = input[1].split("/from ");
                         String description = eventSplit[0];
-                        String[] durationSplit = eventSplit[1].split("/to");
+                        String[] durationSplit = eventSplit[1].split("/to ");
                         String from = durationSplit[0];
                         String to = durationSplit[1];
                         list.add(new Event(description, from, to));
@@ -108,7 +132,7 @@ public class Bob {
                     } else if (input[0].equalsIgnoreCase("delete")) {
                         // Handle case where incorrect number of arguments given
                         if (input.length != 2) {
-                            throw new BobException("Incorect number of arguments");
+                            throw new BobException("Incorrect number of arguments");
                         }
                         int index = Integer.parseInt(input[1]) - 1;
 
@@ -124,10 +148,18 @@ public class Bob {
 
                     } else {
                         // Invalid input, throw exception
-                        throw new BobException("Bob doesn't recognise this, please try again\n" +
-                                "\tUsage: \n\t1. todo <description> or \n\t2. deadline <description> /by <deadline> or\n\t3. event <description> " +
-                                "/from <start time> /to <end time>\n\t4. list\n\t5. mark <task number>\n\t6. unmark <task number>" +
-                                "\n\t7. delete <task number>");
+                        throw new BobException("""
+                                Bob doesn't recognise this, please try again
+                                \tUsage:\s
+                                \t1. todo <description> or\s
+                                \t2. deadline <description> /by <deadline> or
+                                \t3. event <description> \
+                                /from <start time> /to <end time>
+                                \t4. list
+                                \t5. mark <task number>
+                                \t6. unmark <task number>\
+                                
+                                \t7. delete <task number>""");
 
                     }
 
@@ -136,7 +168,19 @@ public class Bob {
                     input = rawInput.split(" ", 2);
                 }
                 // Close the bot when user types bye
+                // Say bye message when user types bye
                 System.out.println(bye);
+
+                // Write lists to file before exit
+                File file = filePath.toFile();
+                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+                for (int i = 0; i < list.size(); i++) {
+                    writer.write(list.get(i).toString());
+                    writer.newLine();
+                }
+                writer.close();
+
+                // Break out of loop to exit
                 break;
 
             } catch (BobException e) {
@@ -148,4 +192,48 @@ public class Bob {
 
 
     }
+
+
+    private static Task parseTask(String line) throws BobException {
+        char taskType = line.charAt(1); // The character after the first '['
+        boolean isDone = line.charAt(4) == 'X'; // Determine if the task is marked done
+
+        switch (taskType) {
+        case 'T': { // Todo task
+            String description = line.substring(7); // Extract description
+            Todo todo = new Todo(description);
+            if (isDone) {
+                todo.markDone();
+            }
+            return todo;
+        }
+        case 'D': { // Deadline task
+            String[] parts = line.substring(7).split(" \\(by: ");
+            String description = parts[0];
+            String[] deadlineParts = parts[1].split("\\)");
+            String deadline = deadlineParts[0];
+            Deadline deadlineTask = new Deadline(description, deadline);
+            if (isDone) {
+                deadlineTask.markDone();
+            }
+            return deadlineTask;
+        }
+        case 'E': { // Event task
+            String[] parts = line.substring(7).split(" \\(from: ");
+            String description = parts[0];
+            String[] timeParts = parts[1].split("to: ");
+            String from = timeParts[0];
+            String[] toParts = timeParts[1].split("\\)");
+            String to = toParts[0];
+            Event event = new Event(description, from, to);
+            if (isDone) {
+                event.markDone();
+            }
+            return event;
+        }
+        default:
+            throw new BobException("Unknown task type in file: " + line);
+        }
+    }
+
 }

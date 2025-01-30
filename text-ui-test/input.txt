@@ -1,6 +1,26 @@
+list list
+list
 todo borrow book
 list
+unmark
+unmark a
+unmark 99
+unmark -1
+mark
+mark i
+mark 99
+mark -1
 deadline return book /by Sunday
-event project meeting /from Mon 2pm /to 4pm
-deadline do homework /by no idea :-p
+deadline
+deadline return book /by 25/12/2025 2359
+event /from 16/1/2025 1400 /to 16/1/2025 1600
+event project meeting /from 16/1/2025 1400 /to 16/1/2025 1600
+deadline do homework
+deadline do homework /by 20/1/2025 1800
+todo 
+todo
+list
+todo hello
+delete 99
+delete 3
 bye

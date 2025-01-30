@@ -47,10 +47,11 @@ public class Bob {
 
         ui.printHelloMessage();
 
+        // Initialise scanner
+        Scanner sc = new Scanner(System.in);
+
         while (true) {
             try {
-                // Initialise scanner
-                Scanner sc = new Scanner(System.in);
 
                 // Read in user input for first time
                 String rawInput = sc.nextLine();

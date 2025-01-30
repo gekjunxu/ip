@@ -23,6 +23,9 @@ public class Bob {
         // Store list of to do
         ArrayList<Task> list = new ArrayList<>();
 
+        // Initialise Ui
+        Ui ui = new Ui();
+
         // Check data file present or not, creates one if not present
         Path directory = Paths.get("data");
         Path filePath = Paths.get("data/bob.txt");
@@ -30,7 +33,7 @@ public class Bob {
         if (!directoryExists) {
             Files.createDirectories(directory);
             Files.createFile(filePath);
-            System.out.println("\tData file was not found, created one successfully!");
+            ui.printDatafileNotFoundMessage();
         } else {
             // If file already exists, import into list
             BufferedReader reader = new BufferedReader(new FileReader(filePath.toFile()));
@@ -42,10 +45,7 @@ public class Bob {
 
         }
 
-        String line = "\t____________________________________________________________\n";
-        String hello = line + "\tHello! I'm Bob\n\tWhat can I do for you?\n" + line;
-        String bye = line + "\tBye. Hope to see you again soon!\n" + line;
-        System.out.println(hello);
+        ui.printHelloMessage();
 
         while (true) {
             try {
@@ -64,12 +64,11 @@ public class Bob {
                         } else if (list.isEmpty()) {
                             throw new BobException("There are no items in the list");
                         } else {
-                            System.out.print(line);
-                            System.out.println("\tHere are the tasks in your list:");
+                            ui.printTaskInListMessage();
                             for (int i = 0; i < list.size(); i++) {
                                 System.out.println("\t" + (i + 1) + ". " + list.get(i).toString());
                             }
-                            System.out.println(line);
+                            ui.printLine();
                         }
 
                     } else if (input[0].contains("unmark")) {
@@ -85,7 +84,9 @@ public class Bob {
                             throw new BobException("No such task number");
                         }
                         list.get(index).unMarkDone();
-                        System.out.println(line + "\t   " + list.get(index).toString() + "\n" + line);
+                        ui.printLine();
+                        System.out.println("\t   " + list.get(index).toString());
+                        ui.printLine();
 
                     } else if (input[0].contains("mark")) {
                         // Mark item
@@ -103,7 +104,9 @@ public class Bob {
                             throw new BobException("No such task number, try again");
                         }
                         list.get(index).markDone();
-                        System.out.println(line + "\t   " + list.get(index).toString() + "\n" + line);
+                        ui.printLine();
+                        System.out.println("\t   " + list.get(index).toString());
+                        ui.printLine();
 
                     } else if (input[0].equalsIgnoreCase("deadline")) {
                         // Index 0 is before /by, index 1 is after /by
@@ -118,9 +121,10 @@ public class Bob {
                             throw new BobException("Deadline date format is wrong, please try again.");
                         }
                         list.add(new Deadline(description, deadlineDate));
-                        System.out.println(line + "\t Got it. I've added this task:");
+                        ui.printAddedTaskMessage();
                         System.out.println("\t   " + list.get(list.size() - 1).toString());
-                        System.out.println("\t Now you have " + list.size() + " tasks in the list.\n" + line);
+                        System.out.println("\t Now you have " + list.size() + " tasks in the list.");
+                        ui.printLine();
 
                     } else if (input[0].equalsIgnoreCase("event")) {
                         if (input[1].isEmpty()) {
@@ -142,9 +146,10 @@ public class Bob {
                             throw new BobException("To date/time format is wrong, please try again.");
                         }
                         list.add(new Event(description, fromDate, toDate));
-                        System.out.println(line + "\t Got it. I've added this task:");
+                        ui.printAddedTaskMessage();
                         System.out.println("\t   " + list.get(list.size() - 1).toString());
-                        System.out.println("\t Now you have " + list.size() + " tasks in the list.\n" + line);
+                        System.out.println("\t Now you have " + list.size() + " tasks in the list.");
+                        ui.printLine();
 
                     } else if (input[0].equalsIgnoreCase("todo")) {
                         if (input.length < 2) {
@@ -152,9 +157,10 @@ public class Bob {
                         }
 
                         list.add(new Todo(input[1]));
-                        System.out.println(line + "\t Got it. I've added this task:");
+                        ui.printAddedTaskMessage();
                         System.out.println("\t   " + list.get(list.size() - 1).toString());
-                        System.out.println("\t Now you have " + list.size() + " tasks in the list.\n" + line);
+                        System.out.println("\t Now you have " + list.size() + " tasks in the list.");
+                        ui.printLine();
 
                     } else if (input[0].equalsIgnoreCase("delete")) {
                         // Handle case where incorrect number of arguments given
@@ -168,10 +174,11 @@ public class Bob {
                             throw new BobException("No such task number");
                         }
 
-                        System.out.println(line + "\t Noted. I've deleted this task:");
+                        ui.printDeletedTaskMessage();
                         System.out.println("\t   " + list.get(index).toString());
                         list.remove(index);
-                        System.out.println("\t Now you have " + list.size() + " tasks in the list.\n" + line);
+                        System.out.println("\t Now you have " + list.size() + " tasks in the list." );
+                        ui.printLine();
 
                     } else {
                         // Invalid input, throw exception
@@ -196,7 +203,7 @@ public class Bob {
                 }
                 // Close the bot when user types bye
                 // Say bye message when user types bye
-                System.out.println(bye);
+                ui.printByeMessage();
 
                 // Write lists to file before exit
                 File file = filePath.toFile();
@@ -211,9 +218,9 @@ public class Bob {
                 break;
 
             } catch (BobException e) {
-                System.out.print(line);
+                ui.printLine();
                 System.out.println("\t" + e.getMessage());
-                System.out.println(line);
+                ui.printLine();
             }
         }
 

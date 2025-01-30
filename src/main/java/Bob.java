@@ -109,6 +109,9 @@ public class Bob {
                         ui.printLine();
 
                     } else if (input[0].equalsIgnoreCase("deadline")) {
+                        if (input.length < 2) {
+                            throw new BobException("Your command is incorrect, try again.");
+                        }
                         // Index 0 is before /by, index 1 is after /by
                         String[] deadlineSplit = input[1].split("/by ");
                         if (deadlineSplit.length <2) {
@@ -153,6 +156,8 @@ public class Bob {
 
                     } else if (input[0].equalsIgnoreCase("todo")) {
                         if (input.length < 2) {
+                            throw new BobException("Task description is empty, please try again");
+                        } else if (input[1].isEmpty()) {
                             throw new BobException("Task description is empty, please try again");
                         }
 

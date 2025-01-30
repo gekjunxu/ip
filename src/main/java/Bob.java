@@ -108,6 +108,9 @@ public class Bob {
                     } else if (input[0].equalsIgnoreCase("deadline")) {
                         // Index 0 is before /by, index 1 is after /by
                         String[] deadlineSplit = input[1].split("/by ");
+                        if (deadlineSplit.length <2) {
+                            throw new BobException("Your command is incorrect, try again.");
+                        }
                         String description = deadlineSplit[0];
                         String deadline = deadlineSplit[1];
                         LocalDateTime deadlineDate = parseDate(deadline);
@@ -126,10 +129,19 @@ public class Bob {
 
                         String[] eventSplit = input[1].split("/from ");
                         String description = eventSplit[0];
-                        String[] durationSplit = eventSplit[1].split("/to ");
+                        String[] durationSplit = eventSplit[1].split(" /to ");
                         String from = durationSplit[0];
+                        LocalDateTime fromDate = parseDate(from);
+                        if (fromDate == null) {
+
+                            throw new BobException("From date/time format is wrong, please try again.");
+                        }
                         String to = durationSplit[1];
-                        list.add(new Event(description, from, to));
+                        LocalDateTime toDate = parseDate(to);
+                        if (toDate == null) {
+                            throw new BobException("To date/time format is wrong, please try again.");
+                        }
+                        list.add(new Event(description, fromDate, toDate));
                         System.out.println(line + "\t Got it. I've added this task:");
                         System.out.println("\t   " + list.get(list.size() - 1).toString());
                         System.out.println("\t Now you have " + list.size() + " tasks in the list.\n" + line);
@@ -321,11 +333,13 @@ public class Bob {
         case 'E': { // Event task
             String[] parts = line.substring(7).split(" \\(from: ");
             String description = parts[0];
-            String[] timeParts = parts[1].split("to: ");
+            String[] timeParts = parts[1].split(" to: ");
             String from = timeParts[0];
+            LocalDateTime fromDate = parseDate(from);
             String[] toParts = timeParts[1].split("\\)");
             String to = toParts[0];
-            Event event = new Event(description, from, to);
+            LocalDateTime toDate = parseDate(to);
+            Event event = new Event(description, fromDate, toDate);
             if (isDone) {
                 event.markDone();
             }

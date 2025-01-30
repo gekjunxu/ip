@@ -32,7 +32,7 @@ public class Storage {
         return tasks;
     }
 
-    public void writeTasksToFile(ArrayList<Task> taskList) throws IOException {
+    public void writeTasksToFile(TaskList taskList) throws IOException {
         File file = filePath.toFile();
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         for (int i = 0; i < taskList.size(); i++) {

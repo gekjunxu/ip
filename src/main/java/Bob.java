@@ -1,41 +1,51 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Bob {
 
     private Storage storage;
-    //private TaskList tasks;
+    private TaskList taskList;
     private Ui ui;
 
-    public static void main(String[] args) throws BobException, IOException {
-
+    public Bob(String filePath) {
         // Initialise Ui
-        Ui ui = new Ui();
+        this.ui = new Ui();
 
-        ArrayList<Task> taskList = new ArrayList<>();
+        // Initialise storage
+        this.storage = new Storage(filePath);
+
+        try {
+            if (!storage.directoryExists()) {
+                storage.createDirectory();
+                ui.printDatafileNotFoundMessage();
+
+                // Initialise empty task list
+                taskList = new TaskList();
+            } else {
+                // If file already exists, import into taskList with overloaded constructor
+                taskList = new TaskList(storage.loadTasks());
+            }
+        } catch (BobException | IOException e) {
+            ui.showLoadingFileError();
+            taskList = new TaskList();
+        }
+
+    }
+
+    public static void main(String[] args) throws IOException, BobException {
+        new Bob("data/bob.txt").run();
+    }
+
+    public void run() throws BobException, IOException {
+
+//        ArrayList<Task> taskList = new ArrayList<>();
 
         // Check data file present or not, creates one if not present
         Storage storage = new Storage("data/bob.txt");
 
-        if (!storage.directoryExists()) {
-            storage.createDirectory();
-            ui.printDatafileNotFoundMessage();
 
-            // Store list of to do
-            //ArrayList<Task> taskList = new ArrayList<>();
-
-        } else {
-            // If file already exists, import into taskList
-            taskList = storage.loadTasks();
-
-
-        }
-
+        // Print hello message
         ui.printHelloMessage();
 
         // Initialise scanner
@@ -43,7 +53,6 @@ public class Bob {
 
         while (true) {
             try {
-
                 // Read in user input for first time
                 String rawInput = sc.nextLine();
                 String[] input = rawInput.split(" ", 2);
@@ -115,7 +124,7 @@ public class Bob {
                         if (deadlineDate == null) {
                             throw new BobException("Deadline date format is wrong, please try again.");
                         }
-                        taskList.add(new Deadline(description, deadlineDate));
+                        taskList.addTask(new Deadline(description, deadlineDate));
                         ui.printAddedTaskMessage();
                         System.out.println("\t   " + taskList.get(taskList.size() - 1).toString());
 
@@ -141,7 +150,7 @@ public class Bob {
                         if (toDate == null) {
                             throw new BobException("To date/time format is wrong, please try again.");
                         }
-                        taskList.add(new Event(description, fromDate, toDate));
+                        taskList.addTask(new Event(description, fromDate, toDate));
                         ui.printAddedTaskMessage();
                         System.out.println("\t   " + taskList.get(taskList.size() - 1).toString());
                         ui.printNumOfItemsInList(taskList.size());
@@ -154,7 +163,7 @@ public class Bob {
                             throw new BobException("Task description is empty, please try again");
                         }
 
-                        taskList.add(new Todo(input[1]));
+                        taskList.addTask(new Todo(input[1]));
                         ui.printAddedTaskMessage();
                         System.out.println("\t   " + taskList.get(taskList.size() - 1).toString());
                         ui.printNumOfItemsInList(taskList.size());
@@ -173,8 +182,7 @@ public class Bob {
                         }
 
                         ui.printDeletedTaskMessage();
-                        System.out.println("\t   " + taskList.get(index).toString());
-                        taskList.remove(index);
+                        taskList.deleteTask(index);
                         ui.printNumOfItemsInList(taskList.size());
                         ui.printLine();
 
@@ -192,7 +200,6 @@ public class Bob {
                                 \t6. unmark <task number>\
                                 
                                 \t7. delete <task number>""");
-
                     }
 
                     // Continue to read next user input
@@ -218,7 +225,6 @@ public class Bob {
 
 
     }
-
 
 
 }

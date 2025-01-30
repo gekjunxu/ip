@@ -46,4 +46,10 @@ public class Ui {
     public void printNumOfItemsInList(long size) {
         System.out.println("\t Now you have " + size + " tasks in the list.");
     }
+
+    public void showLoadingFileError() {
+        System.out.println(line);
+        System.out.println("There was an error loading the file. Tasks in this session may not be saved.");
+        System.out.println(line);
+    }
 }

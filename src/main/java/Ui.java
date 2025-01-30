@@ -42,4 +42,8 @@ public class Ui {
         System.out.println(line);
         System.out.println("\t Got it. I've deleted this task:");
     }
+
+    public void printNumOfItemsInList(long size) {
+        System.out.println("\t Now you have " + size + " tasks in the list.");
+    }
 }

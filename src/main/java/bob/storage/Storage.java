@@ -19,11 +19,11 @@ public class Storage {
         this.filePath = Paths.get(filePath);
     }
 
-    public boolean directoryExists () {
+    public boolean directoryExists() {
         return Files.exists(filePath);
     }
 
-    public void createDirectory () throws IOException {
+    public void createDirectory() throws IOException {
         Files.createDirectories(filePath.getParent());
         Files.createFile(filePath);
     }

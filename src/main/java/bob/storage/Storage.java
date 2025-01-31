@@ -1,3 +1,10 @@
+package bob.storage;
+
+import bob.command.Parser;
+import bob.exception.BobException;
+import bob.task.Task;
+import bob.task.TaskList;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;

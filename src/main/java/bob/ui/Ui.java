@@ -1,3 +1,5 @@
+package bob.ui;
+
 public class Ui {
 
     private final String line = "\t____________________________________________________________";

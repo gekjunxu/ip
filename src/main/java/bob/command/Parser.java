@@ -1,3 +1,11 @@
+package bob.command;
+
+import bob.exception.BobException;
+import bob.task.Deadline;
+import bob.task.Event;
+import bob.task.Task;
+import bob.task.Todo;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -12,7 +20,7 @@ public class Parser {
         boolean isDone = line.charAt(4) == 'X'; // Determine if the task is marked done
 
         switch (taskType) {
-        case 'T': { // Todo task
+        case 'T': { // bob.Todo task
             String description = line.substring(7); // Extract description
             Todo todo = new Todo(description);
             if (isDone) {

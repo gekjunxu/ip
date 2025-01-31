@@ -7,6 +7,8 @@ import bob.task.Task;
 import bob.task.Todo;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
@@ -47,14 +49,58 @@ public class ParserTest {
     void parseTask_invalidTaskType_exceptionThrown() {
         String invalidTaskLine = "[X][ ] Invalid task type (by: Jan 31 2025 23:59)";
 
-        BobException thrown = assertThrows(BobException.class, () -> {
-            Parser.parseTask(invalidTaskLine);
-        });
+        BobException thrown = assertThrows(BobException.class, () -> Parser.parseTask(invalidTaskLine));
 
         assertEquals("Unknown task type in file: [X][ ] Invalid task type (by: Jan 31 2025 23:59)", thrown.getMessage());
     }
 
 
+    @Test
+    public void parseDate_validDate_success() {
+        String validDate = "2025-01-31"; // Valid date format (yyyy-MM-dd)
+
+        LocalDateTime result = Parser.parseDate(validDate); // Parsing the date
+
+        assertNotNull(result); // Ensure that the result is not null
+        assertEquals(2025, result.getYear()); // Check if the year is correct
+        assertEquals(1, result.getMonthValue()); // Check if the month is correct
+        assertEquals(31, result.getDayOfMonth()); // Check if the day is correct
+    }
+
+
+    @Test
+    public void parseDate_invalidDate_returnsNull() {
+        String invalidDate = "2025-13-32"; // Invalid date (month 13, day 32)
+
+        LocalDateTime result = Parser.parseDate(invalidDate); // Parsing the invalid date
+
+        assertNull(result); // The result should be null since the date is invalid
+    }
+
+
+    @Test
+    public void parseDate_validDateWithTime_success() {
+        String validDateWithTime = "2025-01-31 14:30"; // Valid date and time format (yyyy-MM-dd HH:mm)
+
+        LocalDateTime result = Parser.parseDate(validDateWithTime); // Parsing the date with time
+
+        assertNotNull(result); // Ensure that the result is not null
+        assertEquals(2025, result.getYear()); // Check if the year is correct
+        assertEquals(1, result.getMonthValue()); // Check if the month is correct
+        assertEquals(31, result.getDayOfMonth()); // Check if the day is correct
+        assertEquals(14, result.getHour()); // Check if the hour is correct
+        assertEquals(30, result.getMinute()); // Check if the minute is correct
+    }
+
+
+    @Test
+    public void parseDate_invalidFormat_returnsNull() {
+        String invalidFormat = "31+02+2025"; // Invalid format (incorrect separator)
+
+        LocalDateTime result = Parser.parseDate(invalidFormat); // Parsing the invalid date format
+
+        assertNull(result); // The result should be null since the format doesn't match any expected pattern
+    }
 
 
 }

@@ -1,3 +1,5 @@
+package bob;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -9,7 +11,7 @@ public class Bob {
     private Ui ui;
 
     public Bob(String filePath) {
-        // Initialise Ui
+        // Initialise bob.Ui
         this.ui = new Ui();
 
         // Initialise storage
@@ -39,7 +41,7 @@ public class Bob {
 
     public void run() throws BobException, IOException {
 
-//        ArrayList<Task> taskList = new ArrayList<>();
+//        ArrayList<bob.Task> taskList = new ArrayList<>();
 
         // Check data file present or not, creates one if not present
         Storage storage = new Storage("data/bob.txt");

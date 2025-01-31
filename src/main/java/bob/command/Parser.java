@@ -15,6 +15,13 @@ import java.util.List;
 
 public class Parser {
 
+    /**
+     * Parses a line in datafile
+     *
+     * @param line
+     * @return Task
+     * @throws BobException
+     */
     public static Task parseTask(String line) throws BobException {
         char taskType = line.charAt(1); // The character after the first '['
         boolean isDone = line.charAt(4) == 'X'; // Determine if the task is marked done

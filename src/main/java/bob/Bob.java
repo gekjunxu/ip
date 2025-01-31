@@ -1,5 +1,14 @@
 package bob;
 
+import bob.command.Parser;
+import bob.exception.BobException;
+import bob.storage.Storage;
+import bob.task.Deadline;
+import bob.task.Event;
+import bob.task.TaskList;
+import bob.task.Todo;
+import bob.ui.Ui;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -39,13 +48,10 @@ public class Bob {
         new Bob("data/bob.txt").run();
     }
 
-    public void run() throws BobException, IOException {
-
-//        ArrayList<bob.Task> taskList = new ArrayList<>();
+    public void run() throws IOException {
 
         // Check data file present or not, creates one if not present
         Storage storage = new Storage("data/bob.txt");
-
 
         // Print hello message
         ui.printHelloMessage();

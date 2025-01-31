@@ -1,4 +1,4 @@
-package bob;
+package bob.task;
 
 public class Task {
     protected String description;

@@ -1,4 +1,4 @@
-package bob;
+package bob.ui;
 
 public class Ui {
 

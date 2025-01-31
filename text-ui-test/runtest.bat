@@ -9,7 +9,8 @@ if exist ACTUAL.TXT del ACTUAL.TXT
 if exist data\bob.txt del data\bob.txt
 
 REM compile the code into the bin folder
-javac  -cp ..\src\main\java\bob -Xlint:none -d ..\bin ..\src\main\java\bob\*.java
+javac  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\bob\*.java
+
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1

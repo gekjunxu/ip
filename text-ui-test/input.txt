@@ -23,4 +23,6 @@ list
 todo hello
 delete 99
 delete 3
+find book
+find
 bye

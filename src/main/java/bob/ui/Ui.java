@@ -104,4 +104,11 @@ public class Ui {
     public void printMarkedTaskUndone() {
         System.out.println("\tOK, I've marked this task as not done yet:");
     }
+
+    /**
+     * Prints message about the tasks found.
+     */
+    public void printFoundTasks() {
+        System.out.println("\tHere are the matching tasks in your list:");
+    }
 }

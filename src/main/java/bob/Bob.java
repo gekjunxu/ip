@@ -94,9 +94,7 @@ public class Bob {
                             throw new BobException("There are no items in the list");
                         } else {
                             ui.printTaskInListMessage();
-                            for (int i = 0; i < taskList.size(); i++) {
-                                System.out.println("\t" + (i + 1) + ". " + taskList.get(i).toString());
-                            }
+                            taskList.listTasks();
                             ui.printLine();
                         }
 
@@ -214,7 +212,19 @@ public class Bob {
                         ui.printNumOfItemsInList(taskList.size());
                         ui.printLine();
 
-                    } else {
+                    } else if (input[0].equalsIgnoreCase("find")) {
+                        if (input.length < 2) {
+                            throw new BobException("Incorrect number of arguments");
+                        }
+                        String toFind = input[1];
+                        TaskList foundTasks = taskList.findTasks(toFind);
+                        ui.printLine();
+                        ui.printFoundTasks();
+                        foundTasks.listTasks();
+                        ui.printLine();
+                    }
+
+                    else {
                         // Invalid input, throw exception
                         throw new BobException("""
                                 Bob doesn't recognise this, please try again

@@ -48,9 +48,26 @@ public class TaskList {
      * Lists out the tasks in the list of tasks.
      */
     public void listTasks() {
-        for (Task task : tasks) {
-            System.out.println(task);
+        for (int i = 0; i < this.tasks.size(); i++) {
+            System.out.println("\t" + (i + 1) + ". " + this.tasks.get(i).toString());
         }
+    }
+
+    /**
+     * Takes in an input sequence and returns a TaskList containing matching
+     * tasks.
+     *
+     * @param name To find in description of tasks.
+     * @return TaskList containing the found tasks.
+     */
+    public TaskList findTasks(String name) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.description.contains(name)) {
+                foundTasks.add(task);
+            }
+        }
+        return new TaskList(foundTasks);
     }
 
     /**

@@ -24,6 +24,10 @@ public class TaskList {
     }
 
     public void listTasks() {
+        for (int i = 0; i < this.tasks.size(); i++) {
+            System.out.println("\t" + (i + 1) + ". " + this.tasks.get(i).toString());
+        }
+    }
         for (Task task : tasks) {
             System.out.println(task);
         }

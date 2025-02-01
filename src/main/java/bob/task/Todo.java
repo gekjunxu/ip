@@ -1,8 +1,20 @@
 package bob.task;
 
+/**
+ * Represents a task with a description.
+ * <p>
+ * Inherits from the Task class.
+ *
+ * @see bob.task.Task
+ */
 public class Todo extends Task {
 
-        public Todo(String description) {
+    /**
+     * Creates a new Todo instance.
+     *
+     * @param description of the todo task.
+     */
+    public Todo(String description) {
             super(description);
         }
 

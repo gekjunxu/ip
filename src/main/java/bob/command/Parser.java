@@ -13,14 +13,20 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
+/**
+ * Handles parsing operations.
+ * This class is responsible for operations where input parsing is required,
+ * such as reading tasks from the saved file, and processing the dates
+ * from String to a LocalDateTime format.
+ */
 public class Parser {
 
     /**
-     * Parses a line in datafile
+     * Parses a line in datafile into the task.
      *
-     * @param line
-     * @return Task
-     * @throws BobException
+     * @param line The input line to be parsed.
+     * @return Task The task that has been parsed.
+     * @throws BobException If the task in the line is unknown and cannot be parsed.
      */
     public static Task parseTask(String line) throws BobException {
         char taskType = line.charAt(1); // The character after the first '['
@@ -67,6 +73,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a date in String format to a LocalDateTime.
+     *
+     * @param date The date to be parsed in String.
+     * @return The LocalDateTime object corresponding to the input date in String format,
+     * returns null if the date cannot be parsed.
+     */
     public static LocalDateTime parseDate(String date) {
         // Support multiple date formats, generated with some help from GPT
         List<String> patterns = List.of(

@@ -13,12 +13,21 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
+/**
+ * The main class for the Bob Chatbot.
+ */
 public class Bob {
 
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Constructor for Bob, checks for existing data file and processes it,
+     * creates one if not found.
+     *
+     * @param filePath The path to the data file.
+     */
     public Bob(String filePath) {
         // Initialise bob.Ui
         this.ui = new Ui();
@@ -44,10 +53,21 @@ public class Bob {
 
     }
 
+    /**
+     * Creates a new Bob instance to run the program.
+     *
+     * @throws IOException if encounters issue with reading data file.
+     * @throws BobException if any inputs are not of the expected format.
+     */
     public static void main(String[] args) throws IOException, BobException {
         new Bob("data/bob.txt").run();
     }
 
+    /**
+     * The main running logic for Bob.
+     *
+     * @throws IOException if encounters issue with reading data file.
+     */
     public void run() throws IOException {
 
         // Check data file present or not, creates one if not present

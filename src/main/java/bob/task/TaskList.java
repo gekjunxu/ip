@@ -28,9 +28,22 @@ public class TaskList {
             System.out.println("\t" + (i + 1) + ". " + this.tasks.get(i).toString());
         }
     }
+
+    /**
+     * Takes in an input sequence and returns a TaskList containing matching
+     * tasks.
+     *
+     * @param name To find in description of tasks.
+     * @return TaskList containing the found tasks.
+     */
+    public TaskList findTasks(String name) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
         for (Task task : tasks) {
-            System.out.println(task);
+            if (task.description.contains(name)) {
+                foundTasks.add(task);
+            }
         }
+        return new TaskList(foundTasks);
     }
 
     public int size() {

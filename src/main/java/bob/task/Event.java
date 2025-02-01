@@ -8,7 +8,8 @@ import java.time.format.DateTimeFormatter;
  *
  * @see bob.task.Task
  */
-public class Event extends Task{
+public class Event extends Task {
+
 
     protected LocalDateTime to;
     protected LocalDateTime from;

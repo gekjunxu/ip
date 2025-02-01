@@ -52,7 +52,7 @@ public class Storage {
      * Loads tasks from the storage file.
      *
      * @return A list of tasks read from the file.
-     * @throws IOException If an I/O error occurs while reading the file.
+     * @throws IOException  If an I/O error occurs while reading the file.
      * @throws BobException If the file contains an invalid task format.
      */
     public ArrayList<Task> loadTasks() throws IOException, BobException {

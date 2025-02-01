@@ -198,7 +198,10 @@ public class Bob {
                         }
                         String toFind = input[1];
                         TaskList foundTasks = taskList.findTasks(toFind);
+                        ui.printLine();
+                        ui.printFoundTasks();
                         foundTasks.listTasks();
+                        ui.printLine();
                     }
 
                     else {

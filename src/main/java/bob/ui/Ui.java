@@ -54,4 +54,11 @@ public class Ui {
         System.out.println("There was an error loading the file. Tasks in this session may not be saved.");
         System.out.println(line);
     }
+
+    /**
+     * Prints message about the tasks found.
+     */
+    public void printFoundTasks() {
+        System.out.println("\tHere are the matching tasks in your list:");
+    }
 }

@@ -86,6 +86,7 @@ public class TaskList {
 
     /**
      * Returns the task object at the specified index.
+     *
      * @param i index of the task.
      */
     public Task get(int i) {

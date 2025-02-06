@@ -1,5 +1,9 @@
 package bob;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Scanner;
+
 import bob.command.Parser;
 import bob.exception.BobException;
 import bob.storage.Storage;
@@ -9,9 +13,6 @@ import bob.task.TaskList;
 import bob.task.Todo;
 import bob.ui.Ui;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.Scanner;
 
 /**
  * The main class for the Bob Chatbot.
@@ -56,7 +57,7 @@ public class Bob {
     /**
      * Creates a new Bob instance to run the program.
      *
-     * @throws IOException if encounters issue with reading data file.
+     * @throws IOException  if encounters issue with reading data file.
      * @throws BobException if any inputs are not of the expected format.
      */
     public static void main(String[] args) throws IOException, BobException {
@@ -222,9 +223,7 @@ public class Bob {
                         ui.printFoundTasks();
                         foundTasks.listTasks();
                         ui.printLine();
-                    }
-
-                    else {
+                    } else {
                         // Invalid input, throw exception
                         throw new BobException("""
                                 Bob doesn't recognise this, please try again
@@ -236,7 +235,6 @@ public class Bob {
                                 \t4. taskList
                                 \t5. mark <task number>
                                 \t6. unmark <task number>\
-                                
                                 \t7. delete <task number>""");
                     }
 

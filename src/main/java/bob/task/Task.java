@@ -11,6 +11,7 @@ public class Task {
 
     /**
      * Creates a new Task instance
+     *
      * @param description The description of the task.
      */
     public Task(String description) {

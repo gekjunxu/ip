@@ -6,8 +6,8 @@ package bob.ui;
 public class Ui {
 
     private final String line = "\t____________________________________________________________";
-    String hello = "\tHello! I'm Bob\n\tWhat can I do for you?";
-    String bye = "\tBye. Hope to see you again soon!";
+    private String hello = "\tHello! I'm Bob\n\tWhat can I do for you?";
+    private String bye = "\tBye. Hope to see you again soon!";
 
     /**
      * Creates a new UI instance.

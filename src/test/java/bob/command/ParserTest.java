@@ -1,16 +1,20 @@
 package bob.command;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
+
 import bob.exception.BobException;
 import bob.task.Deadline;
 import bob.task.Event;
 import bob.task.Task;
 import bob.task.Todo;
-
-import org.junit.jupiter.api.Test;
-
-import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
 
@@ -41,8 +45,10 @@ public class ParserTest {
         Task task = Parser.parseTask(input); // Parsing the task
 
         assertNotNull(task);
-        assertInstanceOf(Event.class, task); // Verify that the parsed task is of type Event
-        assertEquals("Team meeting", task.toString().substring(7, task.toString().indexOf(" (from:"))); // Ensure the description is correct
+        // Verify that the parsed task is of type Event
+        assertInstanceOf(Event.class, task);
+        // Ensure the description is correct
+        assertEquals("Team meeting", task.toString().substring(7, task.toString().indexOf(" (from:")));
     }
 
 
@@ -52,7 +58,8 @@ public class ParserTest {
 
         BobException thrown = assertThrows(BobException.class, () -> Parser.parseTask(invalidTaskLine));
 
-        assertEquals("Unknown task type in file: [X][ ] Invalid task type (by: Jan 31 2025 23:59)", thrown.getMessage());
+        assertEquals("Unknown task type in file: [X][ ] Invalid task type (by: Jan 31 2025 23:59)",
+                thrown.getMessage());
     }
 
 

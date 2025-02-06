@@ -1,17 +1,18 @@
 package bob.command;
 
-import bob.exception.BobException;
-import bob.task.Deadline;
-import bob.task.Event;
-import bob.task.Task;
-import bob.task.Todo;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+
+import bob.exception.BobException;
+import bob.task.Deadline;
+import bob.task.Event;
+import bob.task.Task;
+import bob.task.Todo;
+
 
 /**
  * Handles parsing operations.
@@ -78,7 +79,7 @@ public class Parser {
      *
      * @param date The date to be parsed in String.
      * @return The LocalDateTime object corresponding to the input date in String format,
-     * returns null if the date cannot be parsed.
+     *          returns null if the date cannot be parsed.
      */
     public static LocalDateTime parseDate(String date) {
         // Support multiple date formats, generated with some help from GPT
@@ -94,14 +95,14 @@ public class Parser {
                 // Date & Time (24-hour format with colon)
                 "yyyy-MM-dd HH:mm", "dd/MM/yyyy HH:mm", "d/M/yyyy HH:mm", "MM-dd-yyyy HH:mm", "M-d-yyyy HH:mm",
                 "dd/MM/yy HH:mm", "d/M/yy HH:mm", "MM/dd/yyyy HH:mm", "M/d/yyyy HH:mm",
-                "yyyy-MM-dd HH:mm:ss", "dd/MM/yyyy HH:mm:ss", "d/M/yyyy HH:mm:ss", "MM-dd-yyyy HH:mm:ss", "M-d-yyyy HH:mm:ss",
-                "dd/MM/yy HH:mm:ss", "d/M/yy HH:mm:ss", "MM/dd/yyyy HH:mm:ss", "M/d/yyyy HH:mm:ss",
+                "yyyy-MM-dd HH:mm:ss", "dd/MM/yyyy HH:mm:ss", "d/M/yyyy HH:mm:ss", "MM-dd-yyyy HH:mm:ss",
+                "M-d-yyyy HH:mm:ss", "dd/MM/yy HH:mm:ss", "d/M/yy HH:mm:ss", "MM/dd/yyyy HH:mm:ss", "M/d/yyyy HH:mm:ss",
 
                 // **24-hour time formats without colon (HHmm) for various date formats**
                 "yyyy-MM-dd HHmm", "dd/MM/yyyy HHmm", "d/M/yyyy HHmm", "MM-dd-yyyy HHmm", "M-d-yyyy HHmm",
                 "dd/MM/yy HHmm", "d/M/yy HHmm", "MM/dd/yyyy HHmm", "M/d/yyyy HHmm",
-                "yyyy-MM-dd HHmm:ss", "dd/MM/yyyy HHmm:ss", "d/M/yyyy HHmm:ss", "MM-dd-yyyy HHmm:ss", "M-d-yyyy HHmm:ss",
-                "dd/MM/yy HHmm:ss", "d/M/yy HHmm:ss", "MM/dd/yyyy HHmm:ss", "M/d/yyyy HHmm:ss",
+                "yyyy-MM-dd HHmm:ss", "dd/MM/yyyy HHmm:ss", "d/M/yyyy HHmm:ss", "MM-dd-yyyy HHmm:ss",
+                "M-d-yyyy HHmm:ss", "dd/MM/yy HHmm:ss", "d/M/yy HHmm:ss", "MM/dd/yyyy HHmm:ss", "M/d/yyyy HHmm:ss",
 
                 // Date & Time (12-hour format with AM/PM)
                 "yyyy-MM-dd h:mm a", "dd/MM/yyyy h:mm a", "d/M/yyyy h:mm a", "MM-dd-yyyy h:mm a", "M-d-yyyy h:mm a",
@@ -119,8 +120,9 @@ public class Parser {
                 "dd/M/yyyy HH:mm", "dd/M/yyyy HHmm", "dd/M/yyyy HH:mm:ss", "dd/M/yyyy HHmm:ss",
 
                 // Date & Time Permutations with AM/PM (with 24-hour times)
-                "dd/M/yy h:mm a", "dd/M/yy h:mma", "dd/M/yy h.mma", "dd/M/yy h:mm a, MMM d yyyy", "dd/M/yy h.mma, MMM d yyyy",
-                "dd/M/yyyy h:mm a", "dd/M/yyyy h:mma", "dd/M/yyyy h.mma", "dd/M/yyyy h:mm a, MMM d yyyy", "dd/M/yyyy h.mma, MMM d yyyy",
+                "dd/M/yy h:mm a", "dd/M/yy h:mma", "dd/M/yy h.mma", "dd/M/yy h:mm a, MMM d yyyy",
+                "dd/M/yy h.mma, MMM d yyyy", "dd/M/yyyy h:mm a", "dd/M/yyyy h:mma", "dd/M/yyyy h.mma",
+                "dd/M/yyyy h:mm a, MMM d yyyy", "dd/M/yyyy h.mma, MMM d yyyy",
 
                 // **New Formats with Time Separating Hour and Minute by Period (e.g., "6.30pm")**
                 "yyyy-MM-dd h.mma", "dd/MM/yyyy h.mma", "d/M/yyyy h.mma", "MM-dd-yyyy h.mma", "M-d-yyyy h.mma",

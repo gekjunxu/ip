@@ -16,7 +16,7 @@ public class Deadline extends Task {
      * Creates a new instance of a deadline task.
      *
      * @param description of the task.
-     * @param by The deadline of the task.
+     * @param by          The deadline of the task.
      */
     public Deadline(String description, LocalDateTime by) {
         super(description);
@@ -25,8 +25,8 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " +
-                by.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")) + ")";
+        return "[D]" + super.toString() + " (by: "
+                + by.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")) + ")";
     }
 
 }

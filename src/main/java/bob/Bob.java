@@ -55,6 +55,13 @@ public class Bob {
     }
 
     /**
+     * Overloaded constructor for testing
+     */
+    public Bob() {
+
+    }
+
+    /**
      * Creates a new Bob instance to run the program.
      *
      * @throws IOException  if encounters issue with reading data file.
@@ -260,6 +267,13 @@ public class Bob {
         }
 
 
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 
 

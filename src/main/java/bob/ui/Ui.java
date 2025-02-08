@@ -22,93 +22,84 @@ public class Ui {
      * Prints message if data file was not found, notifies user that one
      * is created successfully.
      */
-    public void printDatafileNotFoundMessage() {
-        System.out.println("\tData file was not found, created one successfully!");
+    public String printDatafileNotFoundMessage() {
+        return "\tData file was not found, created one successfully!\n";
     }
 
     /**
      * Prints hello message.
      */
-    public void printHelloMessage() {
-        System.out.println(line);
-        System.out.println(hello);
-        System.out.println(line);
+    public String printHelloMessage() {
+        return hello;
     }
 
     /**
      * Prints bye message before chatbot terminates.
      */
-    public void printByeMessage() {
-        System.out.println(line);
-        System.out.println(bye);
-        System.out.println(line);
+    public String printByeMessage() {
+        return bye;
     }
 
     /**
      * Prints a line of underscores.
      */
-    public void printLine() {
-        System.out.println(line);
+    public String printLine() {
+        return line;
     }
 
     /**
      * Prints message to tell user that below are the tasks in his/her list.
      */
-    public void printTaskInListMessage() {
-        System.out.println(line);
-        System.out.println("\tHere are the tasks in your list:");
+    public String printTaskInListMessage() {
+        return "Here are the tasks in your list:\n";
     }
 
     /**
      * Prints message notifying user that task has been added
      */
-    public void printAddedTaskMessage() {
-        System.out.println(line);
-        System.out.println("\t Got it. I've added this task:");
+    public String printAddedTaskMessage() {
+        return "Got it. I've added this task:\n";
     }
 
     /**
      * Prints message notifying user that task has been deleted
      */
-    public void printDeletedTaskMessage() {
-        System.out.println(line);
-        System.out.println("\t Got it. I've deleted this task:");
+    public String printDeletedTaskMessage() {
+        return "Got it. I've deleted this task:\n";
     }
 
     /**
      * Prints message to show the number of tasks present in the list
      */
-    public void printNumOfItemsInList(long size) {
-        System.out.println("\t Now you have " + size + " tasks in the list.");
+    public String printNumOfItemsInList(long size) {
+        return "Now you have " + size + " tasks in the list.\n";
     }
 
     /**
      * Prints message to notify user there was an error loading the data file.
      */
-    public void showLoadingFileError() {
-        System.out.println(line);
-        System.out.println("There was an error loading the file. Tasks in this session may not be saved.");
-        System.out.println(line);
+    public String showDataFileError() {
+        return "There was an error with loading / saving the data file. Tasks in this session may not be saved.\n";
     }
 
     /**
      * Prints message to notify user task has been marked done.
      */
-    public void printMarkedTaskDone() {
-        System.out.println("\tNice! I've marked this task as done:");
+    public String printMarkedTaskDone() {
+        return "Nice! I've marked this task as done:\n";
     }
 
     /**
      * Prints message to notify user task has been marked as undone.
      */
-    public void printMarkedTaskUndone() {
-        System.out.println("\tOK, I've marked this task as not done yet:");
+    public String printMarkedTaskUndone() {
+        return "OK, I've marked this task as not done yet:\n";
     }
 
     /**
      * Prints message about the tasks found.
      */
-    public void printFoundTasks() {
-        System.out.println("\tHere are the matching tasks in your list:");
+    public String printFoundTasks() {
+        return "\tHere are the matching tasks in your list:\n";
     }
 }

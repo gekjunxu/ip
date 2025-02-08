@@ -204,15 +204,15 @@ public class Bob {
             // Invalid input, throw exception
             throw new BobException("""
                     Bob doesn't recognise this, please try again
-                    \tUsage:\s
-                    \t1. todo <description> or\s
-                    \t2. deadline <description> /by <deadline> or
-                    \t3. event <description> \
+                    Usage:\s
+                    1. todo <description> or\s
+                    2. deadline <description> /by <deadline> or
+                    3. event <description> \
                     /from <start time> /to <end time>
-                    \t4. taskList
-                    \t5. mark <task number>
-                    \t6. unmark <task number>\
-                    \t7. delete <task number>""");
+                    4. taskList
+                    5. mark <task number>
+                    6. unmark <task number>\
+                    7. delete <task number>""");
         }
         }
     }
@@ -232,6 +232,10 @@ public class Bob {
 
     }
 
+    /**
+     * Returns startup message for the bot
+     * @return message with datafile created message if datafile not found, or just hello message otherwise.
+     */
     public String getStartupMessage() {
         return datafileIsFound ? ui.printHelloMessage() : ui.printDatafileNotFoundMessage() + ui.printHelloMessage();
     }

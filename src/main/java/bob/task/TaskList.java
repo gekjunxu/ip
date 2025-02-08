@@ -51,7 +51,7 @@ public class TaskList {
     public String listTasks() {
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {
-            output.append("\t").append(i + 1).append(". ").append(this.tasks.get(i).toString());
+            output.append(i + 1).append(". ").append(this.tasks.get(i).toString());
         }
         return output.toString();
     }

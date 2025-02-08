@@ -33,7 +33,7 @@ public class Ui {
      * Prints bye message before chatbot terminates.
      */
     public String printByeMessage() {
-        return "Bye. Hope to see you again soon!";
+        return "Bob will close in 5 seconds. Hope to see you again soon!";
     }
 
     /**

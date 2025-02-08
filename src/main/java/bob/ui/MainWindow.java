@@ -38,6 +38,11 @@ public class MainWindow extends AnchorPane {
      */
     public void setBob(Bob d) {
         bob = d;
+        String startupMessage = bob.getStartupMessage();
+
+        if (!startupMessage.isEmpty()) {
+            dialogContainer.getChildren().add(DialogBox.getDukeDialog(startupMessage, bobImage));
+        }
     }
 
     /**

@@ -5,10 +5,6 @@ package bob.ui;
  */
 public class Ui {
 
-    private final String line = "\t____________________________________________________________";
-    private String hello = "\tHello! I'm Bob\n\tWhat can I do for you?";
-    private String bye = "\tBye. Hope to see you again soon!";
-
     /**
      * Creates a new UI instance.
      * <p>
@@ -23,28 +19,28 @@ public class Ui {
      * is created successfully.
      */
     public String printDatafileNotFoundMessage() {
-        return "\tData file was not found, created one successfully!\n";
+        return "Data file was not found, created one successfully!\n";
     }
 
     /**
      * Prints hello message.
      */
     public String printHelloMessage() {
-        return hello;
+        return "Hello! I'm Bob\nWhat can I do for you?";
     }
 
     /**
      * Prints bye message before chatbot terminates.
      */
     public String printByeMessage() {
-        return bye;
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
      * Prints a line of underscores.
      */
     public String printLine() {
-        return line;
+        return "\t____________________________________________________________";
     }
 
     /**

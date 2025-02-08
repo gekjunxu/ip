@@ -39,18 +39,21 @@ public class TaskList {
      *
      * @param index The index of the task to be deleted
      */
-    public void deleteTask(int index) {
-        System.out.println("\t   " + tasks.get(index).toString());
+    public String deleteTask(int index) {
+        String output = tasks.get(index).toString();
         this.tasks.remove(index);
+        return output;
     }
 
     /**
      * Lists out the tasks in the list of tasks.
      */
-    public void listTasks() {
+    public String listTasks() {
+        StringBuilder output = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {
-            System.out.println("\t" + (i + 1) + ". " + this.tasks.get(i).toString());
+            output.append(i + 1).append(". ").append(this.tasks.get(i).toString()).append("\n");
         }
+        return output.toString();
     }
 
     /**

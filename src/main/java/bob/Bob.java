@@ -59,7 +59,7 @@ public class Bob {
     /**
      * The main running logic for Bob.
      *
-     * @throws BobException if issues with user input
+     * @throws BobException if issues with user input.
      * @throws IOException  if encounters issue with writing data file.
      */
     public String run(String rawInput) throws BobException, IOException {
@@ -131,7 +131,7 @@ public class Bob {
             }
             taskList.addTask(new Deadline(description, deadlineDate));
 
-            return ui.printAddedTaskMessage() + "\t   "
+            return ui.printAddedTaskMessage()
                     + taskList.get(taskList.size() - 1).toString()
                     + ui.printNumOfItemsInList(taskList.size());
         }
@@ -155,7 +155,7 @@ public class Bob {
             }
             taskList.addTask(new Event(description, fromDate, toDate));
 
-            return ui.printAddedTaskMessage() + "\t   "
+            return ui.printAddedTaskMessage()
                     + taskList.get(taskList.size() - 1).toString()
                     + ui.printNumOfItemsInList(taskList.size());
         }
@@ -166,8 +166,8 @@ public class Bob {
                 throw new BobException("Task description is empty, please try again");
             }
             taskList.addTask(new Todo(input[1]));
-            return ui.printAddedTaskMessage() + "\t   "
-                    + taskList.get(taskList.size() - 1).toString()
+            return ui.printAddedTaskMessage()
+                    + taskList.get(taskList.size() - 1).toString() + "\n"
                     + ui.printNumOfItemsInList(taskList.size());
         }
         case "delete": {
@@ -194,7 +194,7 @@ public class Bob {
         }
         case "bye": {
             // Write lists to file before exit
-            storage.writeTasksToFile(taskList);
+            saveTasksToFile();
 
             // Close the bot when user types bye
             // Say bye message when user types bye
@@ -233,12 +233,21 @@ public class Bob {
     }
 
     /**
-     * Returns startup message for the bot
+     * Returns startup message for the bot.
+     *
      * @return message with datafile created message if datafile not found, or just hello message otherwise.
      */
     public String getStartupMessage() {
         return datafileIsFound ? ui.printHelloMessage() : ui.printDatafileNotFoundMessage() + ui.printHelloMessage();
     }
 
+    /**
+     * Saves task to file.
+     *
+     * @throws IOException for any issues writing back to file.
+     */
+    public void saveTasksToFile() throws IOException {
+        storage.writeTasksToFile(taskList);
+    }
 
 }

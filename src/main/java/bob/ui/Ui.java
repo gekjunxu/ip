@@ -96,6 +96,6 @@ public class Ui {
      * Prints message about the tasks found.
      */
     public String printFoundTasks() {
-        return "\tHere are the matching tasks in your list:\n";
+        return "Here are the matching tasks in your list:\n";
     }
 }

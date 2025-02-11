@@ -22,6 +22,7 @@ public class TaskList {
      * @param tasks The existing list of tasks.
      */
     public TaskList(ArrayList<Task> tasks) {
+        assert tasks != null : "A valid ArrayList must be passed in";
         this.tasks = tasks;
     }
 
@@ -31,6 +32,7 @@ public class TaskList {
      * @param task The new task to be added.
      */
     public void addTask(Task task) {
+        assert task != null : "Task cannot be null";
         this.tasks.add(task);
     }
 
@@ -39,10 +41,9 @@ public class TaskList {
      *
      * @param index The index of the task to be deleted
      */
-    public String deleteTask(int index) {
-        String output = tasks.get(index).toString();
+    public void deleteTask(int index) {
+        assert index >= 0 && index < this.tasks.size() : "Task index out of bounds";
         this.tasks.remove(index);
-        return output;
     }
 
     /**
@@ -64,6 +65,7 @@ public class TaskList {
      * @return TaskList containing the found tasks.
      */
     public TaskList findTasks(String name) {
+        assert name != null : "Task name cannot be null";
         ArrayList<Task> foundTasks = new ArrayList<>();
         for (Task task : tasks) {
             if (task.description.contains(name)) {

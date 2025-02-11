@@ -13,9 +13,6 @@ import bob.task.Todo;
 import bob.ui.Ui;
 
 
-
-
-
 /**
  * The main class for the Bob Chatbot.
  */
@@ -134,9 +131,9 @@ public class Bob {
             }
             taskList.addTask(new Deadline(description, deadlineDate));
 
-            return ui.printAddedTaskMessage()
-                    + taskList.get(taskList.size() - 1).toString()
-                    + ui.printNumOfItemsInList(taskList.size());
+            String taskString = taskList.get(taskList.size() - 1).toString();
+            int numberOfTasks = taskList.size();
+            return ui.printAddedTaskMessage(taskString, numberOfTasks);
         }
         case "event": {
             if (input[1].isEmpty()) {
@@ -158,9 +155,9 @@ public class Bob {
             }
             taskList.addTask(new Event(description, fromDate, toDate));
 
-            return ui.printAddedTaskMessage()
-                    + taskList.get(taskList.size() - 1).toString()
-                    + ui.printNumOfItemsInList(taskList.size());
+            String taskString = taskList.get(taskList.size() - 1).toString();
+            int numberOfTasks = taskList.size();
+            return ui.printAddedTaskMessage(taskString, numberOfTasks);
         }
         case "todo": {
             if (input.length < 2) {
@@ -169,9 +166,10 @@ public class Bob {
                 throw new BobException("Task description is empty, please try again");
             }
             taskList.addTask(new Todo(input[1]));
-            return ui.printAddedTaskMessage()
-                    + taskList.get(taskList.size() - 1).toString() + "\n"
-                    + ui.printNumOfItemsInList(taskList.size());
+
+            String taskString = taskList.get(taskList.size() - 1).toString();
+            int numberOfTasks = taskList.size();
+            return ui.printAddedTaskMessage(taskString, numberOfTasks);
         }
         case "delete": {
             // Handle case where incorrect number of arguments given
@@ -185,7 +183,7 @@ public class Bob {
                 throw new BobException("No such task number");
             }
             taskList.deleteTask(index);
-            return ui.printDeletedTaskMessage() + ui.printNumOfItemsInList(taskList.size());
+            return ui.printDeletedTaskMessage(taskList.size());
         }
         case "find": {
             if (input.length < 2) {

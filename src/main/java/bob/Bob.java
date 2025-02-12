@@ -108,6 +108,12 @@ public class Bob {
         }
     }
 
+    /**
+     * Saves tasks to file before closing the program.
+     *
+     * @return message to say bye to the user.
+     * @throws IOException if issue occurs when saving file.
+     */
     private String byeTask() throws IOException {
         // Write lists to file before exit
         saveTasksToFile();
@@ -117,6 +123,13 @@ public class Bob {
         return ui.printByeMessage();
     }
 
+    /**
+     * Marks a task as not done.
+     *
+     * @param input The user input containing the task number.
+     * @return A message indicating the task has been unmarked.
+     * @throws BobException If the input is invalid or the task number is out of range.
+     */
     private String unmarkTask(String[] input) throws BobException {
         if (input.length < 2) {
             throw new BobException("Your command is missing a number to unmark");
@@ -131,6 +144,13 @@ public class Bob {
         return ui.printMarkedTaskUndone() + taskList.get(index).toString();
     }
 
+    /**
+     * Marks a task as done.
+     *
+     * @param input The user input containing the task number.
+     * @return A message indicating the task has been marked as done.
+     * @throws BobException If the input is invalid or the task number is out of range.
+     */
     private String markTask(String[] input) throws BobException {
         // Throw exception if no number given
         if (input.length < 2) {
@@ -148,6 +168,13 @@ public class Bob {
         return ui.printMarkedTaskDone() + taskList.get(index).toString();
     }
 
+    /**
+     * Adds an event task to the task list.
+     *
+     * @param input The user input containing the task description and event duration.
+     * @return A message confirming the task has been added.
+     * @throws BobException If the input format is incorrect or date parsing fails.
+     */
     private String eventTask(String[] input) throws BobException {
         if (input[1].isEmpty()) {
             throw new BobException("Task description is empty, please try again");
@@ -173,6 +200,13 @@ public class Bob {
         return ui.printAddedTaskMessage(taskString, numberOfTasks);
     }
 
+    /**
+     * Adds a todo task to the task list.
+     *
+     * @param input The user input containing the task description.
+     * @return A message confirming the task has been added.
+     * @throws BobException If the task description is missing.
+     */
     private String todoTask(String[] input) throws BobException {
         if (input.length < 2) {
             throw new BobException("Task description is empty, please try again");
@@ -186,6 +220,13 @@ public class Bob {
         return ui.printAddedTaskMessage(taskString, numberOfTasks);
     }
 
+    /**
+     * Deletes a task from the task list.
+     *
+     * @param input The user input containing the task number.
+     * @return A message confirming the task has been deleted.
+     * @throws BobException If the input is invalid or the task number is out of range.
+     */
     private String deleteTask(String[] input) throws BobException {
         // Handle case where incorrect number of arguments given
         if (input.length != 2) {
@@ -201,6 +242,13 @@ public class Bob {
         return ui.printDeletedTaskMessage(taskList.size());
     }
 
+    /**
+     * Finds tasks in the task list matching a keyword.
+     *
+     * @param input The user input containing the search keyword.
+     * @return A message listing the found tasks.
+     * @throws BobException If the input format is incorrect.
+     */
     private String findTask(String[] input) throws BobException {
         if (input.length < 2) {
             throw new BobException("Incorrect number of arguments");
@@ -210,6 +258,13 @@ public class Bob {
         return ui.printFoundTasks() + foundTasks.listTasks();
     }
 
+    /**
+     * Adds a deadline task to the task list.
+     *
+     * @param input The user input containing the task description and deadline.
+     * @return A message confirming the task has been added.
+     * @throws BobException If the input format is incorrect or date parsing fails.
+     */
     private String deadlineTask(String[] input) throws BobException {
         if (input.length < 2) {
             throw new BobException("Your command is incorrect, try again.");
@@ -236,11 +291,11 @@ public class Bob {
 
 
     /**
-     * Primary logic for the list command.
+     * Lists all tasks in the task list.
      *
-     * @param input from the user
-     * @return the expected output from the bot.
-     * @throws BobException if there are too many arguments or if the list is empty.
+     * @param input The user input (should contain no extra arguments).
+     * @return A message listing all tasks.
+     * @throws BobException If extra arguments are provided or the task list is empty.
      */
     private String listOutTasks(String[] input) throws BobException {
         if (input.length > 1) {

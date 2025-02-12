@@ -30,7 +30,7 @@ public class Parser {
      * @throws BobException If the task in the line is unknown and cannot be parsed.
      */
     public static Task parseTask(String line) throws BobException {
-        char taskType = line.charAt(1); // The character after the first '['
+        char taskType = line.charAt(1); // Extract task type from formatted string
         boolean isDone = line.charAt(4) == 'X'; // Determine if the task is marked done
 
         switch (taskType) {
@@ -45,6 +45,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses an event task from a line of the saved data file.
+     *
+     * @param line   The line containing event task details.
+     * @param isDone Whether the event is marked as done.
+     * @return The parsed Event object.
+     */
     private static Event parseEventTask(String line, boolean isDone) {
         String[] parts = line.substring(7).split(" \\(from: ");
         String description = parts[0];
@@ -61,6 +68,13 @@ public class Parser {
         return event;
     }
 
+    /**
+     * Parses a deadline task from a line of the saved data file.
+     *
+     * @param line   The line containing deadline task details.
+     * @param isDone Whether the deadline is marked as done.
+     * @return The parsed Deadline object.
+     */
     private static Deadline parseDeadlineTask(String line, boolean isDone) {
         String[] parts = line.substring(7).split(" \\(by: ");
         String description = parts[0];
@@ -74,6 +88,13 @@ public class Parser {
         return deadlineTask;
     }
 
+    /**
+     * Parses a todo task from a line of the saved data file.
+     *
+     * @param line   The line containing todo task details.
+     * @param isDone Whether the todo is marked as done.
+     * @return The parsed Todo object.
+     */
     private static Todo parseTodoTask(String line, boolean isDone) {
         String description = line.substring(7); // Extract description
         Todo todo = new Todo(description);

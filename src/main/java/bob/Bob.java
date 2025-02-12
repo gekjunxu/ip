@@ -91,12 +91,7 @@ public class Bob {
         case "find":
             return findTask(input);
         case "bye":
-            // Write lists to file before exit
-            saveTasksToFile();
-
-            // Close the bot when user types bye
-            // Say bye message when user types bye
-            return ui.printByeMessage();
+            return byeTask();
         default:
             // Invalid input, throw exception
             throw new BobException("""
@@ -111,6 +106,15 @@ public class Bob {
                     6. unmark <task number>\
                     7. delete <task number>""");
         }
+    }
+
+    private String byeTask() throws IOException {
+        // Write lists to file before exit
+        saveTasksToFile();
+
+        // Close the bot when user types bye
+        // Say bye message when user types bye
+        return ui.printByeMessage();
     }
 
     private String unmarkTask(String[] input) throws BobException {

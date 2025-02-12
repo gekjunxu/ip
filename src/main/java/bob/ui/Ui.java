@@ -44,7 +44,7 @@ public class Ui {
     }
 
     /**
-     * Prints message to tell user that below are the tasks in his/her list.
+     * Prints message to tell user that below is the tasks in his/her list.
      */
     public String printTaskInListMessage() {
         return "Here are the tasks in your list:\n";
@@ -53,21 +53,21 @@ public class Ui {
     /**
      * Prints message notifying user that task has been added
      */
-    public String printAddedTaskMessage() {
-        return "Got it. I've added this task:\n";
+    public String printAddedTaskMessage(String task, int numberOfTasks) {
+        return "Got it. I've added this task:\n" + task + "\n" + printNumOfItemsInList(numberOfTasks);
     }
 
     /**
      * Prints message notifying user that task has been deleted
      */
-    public String printDeletedTaskMessage() {
-        return "Got it. I've deleted this task:\n";
+    public String printDeletedTaskMessage(int numberOfTasks) {
+        return "Got it. I've deleted this task:\n" + printNumOfItemsInList(numberOfTasks);
     }
 
     /**
      * Prints message to show the number of tasks present in the list
      */
-    public String printNumOfItemsInList(long size) {
+    public String printNumOfItemsInList(int size) {
         return "Now you have " + size + " tasks in the list.\n";
     }
 

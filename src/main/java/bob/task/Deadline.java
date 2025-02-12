@@ -20,6 +20,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, LocalDateTime by) {
         super(description);
+        assert by != null : "Deadline should have a valid by";
         this.by = by;
     }
 

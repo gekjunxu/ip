@@ -32,6 +32,7 @@ public class Storage {
      * @param filePath The path to the storage file.
      */
     public Storage(String filePath) {
+        assert filePath != null;
         this.filePath = Paths.get(filePath);
     }
 
@@ -80,6 +81,7 @@ public class Storage {
      * @throws IOException If an I/O error occurs while writing to the file.
      */
     public void writeTasksToFile(TaskList taskList) throws IOException {
+        assert taskList != null : "TaskList should not be null";
         File file = filePath.toFile();
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         for (int i = 0; i < taskList.size(); i++) {

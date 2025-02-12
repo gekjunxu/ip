@@ -13,9 +13,6 @@ import bob.task.Todo;
 import bob.ui.Ui;
 
 
-
-
-
 /**
  * The main class for the Bob Chatbot.
  */
@@ -225,6 +222,7 @@ public class Bob {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String rawInput) {
+        assert rawInput != null;
         try {
             return this.run(rawInput);
         } catch (IOException e) {

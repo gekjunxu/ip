@@ -34,44 +34,53 @@ public class Parser {
         boolean isDone = line.charAt(4) == 'X'; // Determine if the task is marked done
 
         switch (taskType) {
-        case 'T': { // bob.Todo task
-            String description = line.substring(7); // Extract description
-            Todo todo = new Todo(description);
-            if (isDone) {
-                todo.markDone();
-            }
-            return todo;
-        }
-        case 'D': { // Deadline task
-            String[] parts = line.substring(7).split(" \\(by: ");
-            String description = parts[0];
-            String[] deadlineParts = parts[1].split("\\)");
-            String deadline = deadlineParts[0];
-            LocalDateTime deadlineDate = parseDate(deadline);
-            Deadline deadlineTask = new Deadline(description, deadlineDate);
-            if (isDone) {
-                deadlineTask.markDone();
-            }
-            return deadlineTask;
-        }
-        case 'E': { // Event task
-            String[] parts = line.substring(7).split(" \\(from: ");
-            String description = parts[0];
-            String[] timeParts = parts[1].split(" to: ");
-            String from = timeParts[0];
-            LocalDateTime fromDate = parseDate(from);
-            String[] toParts = timeParts[1].split("\\)");
-            String to = toParts[0];
-            LocalDateTime toDate = parseDate(to);
-            Event event = new Event(description, fromDate, toDate);
-            if (isDone) {
-                event.markDone();
-            }
-            return event;
-        }
+        case 'T':
+            return parseTodoTask(line, isDone);
+        case 'D':
+            return parseDeadlineTask(line, isDone);
+        case 'E':
+            return parseEventTask(line, isDone);
         default:
             throw new BobException("Unknown task type in file: " + line);
         }
+    }
+
+    private static Event parseEventTask(String line, boolean isDone) {
+        String[] parts = line.substring(7).split(" \\(from: ");
+        String description = parts[0];
+        String[] timeParts = parts[1].split(" to: ");
+        String from = timeParts[0];
+        LocalDateTime fromDate = parseDate(from);
+        String[] toParts = timeParts[1].split("\\)");
+        String to = toParts[0];
+        LocalDateTime toDate = parseDate(to);
+        Event event = new Event(description, fromDate, toDate);
+        if (isDone) {
+            event.markDone();
+        }
+        return event;
+    }
+
+    private static Deadline parseDeadlineTask(String line, boolean isDone) {
+        String[] parts = line.substring(7).split(" \\(by: ");
+        String description = parts[0];
+        String[] deadlineParts = parts[1].split("\\)");
+        String deadline = deadlineParts[0];
+        LocalDateTime deadlineDate = parseDate(deadline);
+        Deadline deadlineTask = new Deadline(description, deadlineDate);
+        if (isDone) {
+            deadlineTask.markDone();
+        }
+        return deadlineTask;
+    }
+
+    private static Todo parseTodoTask(String line, boolean isDone) {
+        String description = line.substring(7); // Extract description
+        Todo todo = new Todo(description);
+        if (isDone) {
+            todo.markDone();
+        }
+        return todo;
     }
 
     /**

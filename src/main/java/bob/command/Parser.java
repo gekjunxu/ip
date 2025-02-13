@@ -107,7 +107,7 @@ public class Parser {
      *
      * @param date The date to be parsed in String.
      * @return The LocalDateTime object corresponding to the input date in String format,
-     * returns null if the date cannot be parsed.
+     *      returns null if the date cannot be parsed.
      */
     public static LocalDateTime parseDate(String date) {
         // Syntax assisted by ChatGPT, developer documentation page not loading.

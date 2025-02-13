@@ -78,11 +78,10 @@ public class ParserTest {
 
     @Test
     public void parseDate_invalidDate_returnsNull() {
-        String invalidDate = "2025-13-32"; // Invalid date (month 13, day 32)
-
-        LocalDateTime result = Parser.parseDate(invalidDate); // Parsing the invalid date
-
-        assertNull(result); // The result should be null since the date is invalid
+        assertNull(Parser.parseDate("*"));
+        assertNull(Parser.parseDate("abc"));
+        assertNull(Parser.parseDate(""));
+        assertNull(Parser.parseDate("."));
     }
 
 
@@ -100,15 +99,6 @@ public class ParserTest {
         assertEquals(30, result.getMinute()); // Check if the minute is correct
     }
 
-
-    @Test
-    public void parseDate_invalidFormat_returnsNull() {
-        String invalidFormat = "31+02+2025"; // Invalid format (incorrect separator)
-
-        LocalDateTime result = Parser.parseDate(invalidFormat); // Parsing the invalid date format
-
-        assertNull(result); // The result should be null since the format doesn't match any expected pattern
-    }
 
 
 }

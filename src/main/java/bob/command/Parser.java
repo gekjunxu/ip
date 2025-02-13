@@ -1,6 +1,8 @@
 package bob.command;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
@@ -111,8 +113,17 @@ public class Parser {
      */
     public static LocalDateTime parseDate(String date) {
         // Syntax assisted by ChatGPT, developer documentation page not loading.
+
+        if (date == null || date.trim().isEmpty()) {
+            return null; // Reject empty input
+        }
+
         com.joestelmach.natty.Parser nattyParser = new com.joestelmach.natty.Parser();
         List<com.joestelmach.natty.DateGroup> groups = nattyParser.parse(date);
+
+        if (groups.isEmpty() || groups.get(0).getDates().isEmpty()) {
+            return null;
+        }
 
         // Get the first parsed date result
         Date parsedDate = groups.get(0).getDates().get(0);
@@ -122,5 +133,4 @@ public class Parser {
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();
     }
-
 }

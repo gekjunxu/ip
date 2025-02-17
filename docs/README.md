@@ -56,6 +56,8 @@ event <event description> /from <event start date/time> /to <event end date/time
 event CS2103T meeting /from Friday 3pm /to Friday 4pm
 ```
 
+> ℹ️ for information on supported date formats, see the corresponding [section](#-supported-date-formats) below
+
 ---
 
 ## **📜 Viewing Your Task List**  

@@ -38,6 +38,7 @@ deadline <task description> /by <deadline date/time>
 ```
 deadline do homework /by tonight 10pm
 ```
+
 > ℹ️ for information on supported date formats, see the corresponding [section](#-supported-date-formats) below
 ---
 

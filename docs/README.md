@@ -144,11 +144,12 @@ You can use various date formats such as:
 - `yyyy-MM-dd` → `2025-02-17`  
 - `dd/MM/yyyy HH:mm` → `17/02/2025 22:00`  
 - Natural language → `"next Friday"`, `"tomorrow 6pm"`
+
 > ℹ️ if the time is not specified, it will set it as the current time you added the task, on the date you entered. <br>
 
 > ⚠️ some dates, especially in natural language may be inferred wrongly, especially if the date is not a valid day of the month. Bob will still try to infer which date you are referring to, but it can get it wrong. If the date inferred is incorrect, simply delete and add the task again using a different date format.
 
----
+
 <br>
 
 ## **🚀 Getting Started**  

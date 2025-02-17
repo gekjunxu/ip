@@ -157,6 +157,7 @@ You can use various date formats such as:
 ### **📦 Installation**  
 1. Download `Bob.jar` from the [Releases](https://github.com/gekjunxu/ip/releases) page.  
 2. Simply double click to run and start adding tasks! 🎉  
+
 ---
 
 

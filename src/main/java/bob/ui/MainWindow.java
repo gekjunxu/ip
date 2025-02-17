@@ -43,6 +43,7 @@ public class MainWindow extends AnchorPane {
         bob = d;
         String startupMessage = bob.getStartupMessage();
 
+        // Assisted by ChatGPT
         if (!startupMessage.isEmpty()) {
             dialogContainer.getChildren().add(DialogBox.getDukeDialog(startupMessage, bobImage));
         }
@@ -63,6 +64,7 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
 
         // Check if user input is "bye"
+        // Assisted by ChatGPT
         if (input.trim().equalsIgnoreCase("bye")) {
             PauseTransition delay = new PauseTransition(Duration.seconds(5));
             delay.setOnFinished(event -> Platform.exit()); // Close after delay

@@ -27,6 +27,7 @@ todo sleep
 ```
 
 ---
+
 ## **📆 Adding a Deadline**  
 A deadline is a task that must be completed before a specific time.  
 
@@ -40,8 +41,8 @@ deadline do homework /by tonight 10pm
 ```
 
 > ℹ️ for information on supported date formats, see the corresponding [section](#-supported-date-formats) below
----
 
+---
 
 ## **📅 Adding an Event**  
 An event is a task that has a specific **start and end** date/time.  
@@ -54,6 +55,7 @@ event <event description> /from <event start date/time> /to <event end date/time
 ```
 event CS2103T meeting /from Friday 3pm /to Friday 4pm
 ```
+
 ---
 
 ## **📜 Viewing Your Task List**  
@@ -63,6 +65,7 @@ To **see all tasks** in your list, use:
 ```
 list
 ```
+
 ---
 
 ## **✅ Marking a Task as Done**  
@@ -76,6 +79,7 @@ mark <task number>
 ```
 mark 1
 ```
+
 ---
 
 ## **↩️ Unmarking a Task as Done**  
@@ -89,6 +93,7 @@ unmark <task number>
 ```
 unmark 1
 ```
+
 ---
 
 ## **❌ Deleting a Task**  
@@ -105,6 +110,7 @@ delete 2
 
 ---
 
+
 ## **🔍 Finding Tasks by Keyword**  
 Search for tasks by keyword.  
 
@@ -116,7 +122,7 @@ find <keyword>
 ```
 find meeting
 ```
->ℹ️ the find function returns any corresponding matches, it does not have to be the full word. Even a letter can be used to find corresponding tasks containing that letter.
+> ℹ️ the find function returns any corresponding matches, it does not have to be the full word. Even a letter can be used to find corresponding tasks containing that letter.
 
 ---
 
@@ -162,8 +168,6 @@ You can use various date formats such as:
 ---
 
 
-
-
 <br>
 
-> ℹ️ _**Note:** This documentation was generated with assistance from ChatGPT for better styling._
+> _**Note:** This documentation was generated with assistance from ChatGPT for better styling._

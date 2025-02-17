@@ -57,7 +57,7 @@ public class Bob {
 
 
     /**
-     * The main running logic for Bob.
+     * Executes the main running logic for Bob.
      *
      * @throws BobException if issues with user input.
      * @throws IOException  if encounters issue with writing data file.

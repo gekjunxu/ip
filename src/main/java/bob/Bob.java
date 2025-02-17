@@ -21,7 +21,7 @@ public class Bob {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
-    private boolean datafileIsFound = false;
+    private boolean isDatafileFound = false;
 
     /**
      * Constructor for Bob, checks for existing data file and processes it,
@@ -46,7 +46,7 @@ public class Bob {
                 // If file already exists, import into taskList with overloaded constructor
                 taskList = new TaskList(storage.loadTasks());
 
-                datafileIsFound = true;
+                isDatafileFound = true;
             }
         } catch (BobException | IOException e) {
             ui.showDataFileError();
@@ -329,7 +329,7 @@ public class Bob {
      * @return message with datafile created message if datafile not found, or just hello message otherwise.
      */
     public String getStartupMessage() {
-        return datafileIsFound ? ui.printHelloMessage() : ui.printDatafileNotFoundMessage() + ui.printHelloMessage();
+        return isDatafileFound ? ui.printHelloMessage() : ui.printDatafileNotFoundMessage() + ui.printHelloMessage();
     }
 
     /**

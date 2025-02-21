@@ -1,26 +1,175 @@
-# Bob project template
+# **📌 Bob User Guide**  
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+<img width="204" alt="Ui" src="https://github.com/user-attachments/assets/b6554ef1-7b92-4b00-bca5-3af74b66b29b" />  
 
-## Setting up in Intellij
+Welcome to **Bob the Chat Bot**! Bob helps you **keep track of tasks, deadlines, and events** effortlessly.  
 
-Prerequisites: JDK 17, update Intellij to the most recent version.
+## **⚡ Features**  
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 17** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-1. After that, locate the `src/main/java/Bob.java` file, right-click it, and choose `Run Bob.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+- ✅ Add **To-Do** tasks  
+- 📅 Manage **Deadlines**  
+- 🎉 Track **Events**  
+- 📖 View and manage your task list  
+- 💾 **Data persistence** – your tasks are saved automatically!  
 
-**Warning:** Keep the `src\main\java` folder as the root folder for Java files (i.e., don't rename those folders or move Java files to another folder outside of this folder path), as this is the default location some tools (e.g., Gradle) expect to find Java files.
+---
+
+## **📝 Adding a To-Do Task**  
+A To-Do task is a simple task without any specific date/time.  
+
+**Command:**  
+```
+todo <task description>
+```
+**Example:**  
+```
+todo sleep
+```
+
+---
+
+## **📆 Adding a Deadline**  
+A deadline is a task that must be completed before a specific time.  
+
+**Command:**  
+```
+deadline <task description> /by <deadline date/time>
+```
+**Example:**  
+```
+deadline do homework /by tonight 10pm
+```
+
+> ℹ️ for information on supported date formats, see the corresponding [section](#-supported-date-formats) below
+
+---
+
+## **📅 Adding an Event**  
+An event is a task that has a specific **start and end** date/time.  
+
+**Command:**  
+```
+event <event description> /from <event start date/time> /to <event end date/time>
+```
+**Example:**  
+```
+event CS2103T meeting /from Friday 3pm /to Friday 4pm
+```
+
+> ℹ️ for information on supported date formats, see the corresponding [section](#-supported-date-formats) below
+
+---
+
+## **📜 Viewing Your Task List**  
+To **see all tasks** in your list, use:  
+
+**Command:**  
+```
+list
+```
+
+---
+
+## **✅ Marking a Task as Done**  
+Once you finish a task, mark it as done.  
+
+**Command:**  
+```
+mark <task number>
+```
+**Example:**  
+```
+mark 1
+```
+
+---
+
+## **↩️ Unmarking a Task as Done**  
+If you accidentally marked a task wrongly, you can unmark the task as done.
+
+**Command:**  
+```
+unmark <task number>
+```
+**Example:**  
+```
+unmark 1
+```
+
+---
+
+## **❌ Deleting a Task**  
+To remove a task from your list, use:  
+
+**Command:**  
+```
+delete <task number>
+```
+**Example:**  
+```
+delete 2
+```
+
+---
+
+
+## **🔍 Finding Tasks by Keyword**  
+Search for tasks by keyword.  
+
+**Command:**  
+```
+find <keyword>
+```
+**Example:**  
+```
+find meeting
+```
+> ℹ️ the find function returns any corresponding matches, it does not have to be the full word. Even a letter can be used to find corresponding tasks containing that letter.
+
+---
+
+## **📤 Saving & Exiting**  
+Bob **automatically saves your tasks** when you exit.  
+
+**Command:**  
+```
+bye
+```
+> Alternatively, simply close the window by presing 'X' on the top right corner. 
+
+
+<br>
+
+## **📌 Additional Features**  
+
+### **📂 Data Persistence**  
+
+Bob **saves your tasks automatically** to `data/bob.txt`. When you reopen Bob, your tasks will be restored.  
+
+---
+
+### **📌 Supported Date Formats**  
+You can use various date formats such as:  
+- `yyyy-MM-dd` → `2025-02-17`  
+- `dd/MM/yyyy HH:mm` → `17/02/2025 22:00`  
+- Natural language → `"next Friday"`, `"tomorrow 6pm"`
+
+> ℹ️ if the time is not specified, it will set it as the current time you added the task, on the date you entered. <br>
+
+> ⚠️ some dates, especially in natural language may be inferred wrongly, especially if the date is not a valid day of the month. Bob will still try to infer which date you are referring to, but it can get it wrong. If the date inferred is incorrect, simply delete and add the task again using a different date format.
+
+
+<br>
+
+## **🚀 Getting Started**  
+
+### **📦 Installation**  
+1. Download `Bob.jar` from the [Releases](https://github.com/gekjunxu/ip/releases) page.  
+2. Simply double click to run and start adding tasks! 🎉  
+
+---
+
+
+<br>
+
+> _**Note:** This documentation was generated with assistance from ChatGPT for better styling._

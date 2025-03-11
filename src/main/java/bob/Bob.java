@@ -97,13 +97,13 @@ public class Bob {
             throw new BobException("""
                     Bob doesn't recognise this, please try again
                     Usage:\s
-                    1. todo <description> or\s
-                    2. deadline <description> /by <deadline> or
+                    1. todo <description> \s
+                    2. deadline <description> /by <deadline>
                     3. event <description> \
                     /from <start time> /to <end time>
-                    4. taskList
+                    4. list
                     5. mark <task number>
-                    6. unmark <task number>\
+                    6. unmark <task number>
                     7. delete <task number>""");
         }
     }
